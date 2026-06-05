@@ -37,6 +37,21 @@ npm run build
 
 Les fichiers statiques prêts pour le déploiement se trouveront dans le dossier `dist/`. Notez que le `base` path de Vite est configuré sur `/mezanno-iiif-viewer/` pour faciliter le déploiement sur des plateformes comme GitHub Pages.
 
+### Déploiement sur GitHub Pages (Nouvelle Méthode)
+
+Ce projet est configuré pour se déployer de manière entièrement automatisée via **GitHub Actions** en utilisant la méthode native de GitHub.
+
+Contrairement à l'ancienne méthode (qui consistait à compiler le projet et à forcer l'envoi du dossier `dist/` sur une branche fantôme `gh-pages`), la **nouvelle approche officielle** (`actions/deploy-pages@v4`) téléverse directement les artefacts compilés sur les serveurs d'hébergement de GitHub Pages. 
+
+**Les avantages :**
+- L'historique Git reste propre et linéaire.
+- Aucune branche `gh-pages` inutile n'est créée.
+- La gestion des droits est plus fine et sécurisée via les tokens (OIDC).
+
+À chaque nouveau `git push` sur la branche `main`, le script défini dans `.github/workflows/deploy.yml` compile le projet et le met en ligne en quelques secondes.
+
+> **Note importante** : Pour que cela fonctionne, vous devez vous rendre sur votre dépôt GitHub, dans **Settings > Pages**, et choisir **GitHub Actions** comme *Source* de déploiement.
+
 ### Résolution du problème de hauteur du Clover IIIF Viewer
 
 Le composant `@samvera/clover-iiif/viewer` possède nativement une hauteur bloquée (souvent 500px). Pour forcer le document à occuper 100% de la hauteur disponible de l'interface (ce qui est crucial pour un Viewer d'images sans "boîte" contrainte), deux ajustements ont été mis en place :
