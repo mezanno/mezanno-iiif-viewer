@@ -14,7 +14,7 @@ Un visualiseur de manifestes IIIF (International Image Interoperability Framewor
 
 ### Prérequis
 
-- Node.js (version 18+ recommandée)
+- Node.js (version 22+ recommandée)
 - npm, yarn ou pnpm
 
 ### Installation
